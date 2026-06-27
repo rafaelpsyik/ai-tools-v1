@@ -1,0 +1,22 @@
+# Copy to terraform.tfvars and fill in. terraform.tfvars is git-ignored.
+# Sensitive values can also be passed via env: export TF_VAR_cloudflared_tunnel_token=...
+
+project_id   = "my-gcp-project-id"
+region       = "us-central1"
+zone         = "us-central1-a"
+machine_type = "e2-medium"
+
+ssh_username = "tools"
+
+# Paste the contents of your public key file (e.g. ~/.ssh/id_ed25519.pub):
+ssh_public_key = "ssh-ed25519 AAAA... you@yourpc"
+
+# From Cloudflare Zero Trust > Networks > Tunnels > (your tunnel) > install token.
+# Keep this secret. Prefer setting it via TF_VAR_cloudflared_tunnel_token instead of this file.
+cloudflared_tunnel_token = "eyJhIjoi....replace-me"
+
+# Break-glass SSH via Google IAP (recommended on).
+enable_iap_ssh = true
+
+# Optional: extra trusted CIDR for direct port-22 access. Leave empty to rely on the tunnel.
+trusted_ssh_cidr = ""
